@@ -34,32 +34,31 @@ public class GuacamoleController extends GuacamoleHTTPTunnelServlet {
     @Override
     protected GuacamoleTunnel doConnect(HttpServletRequest request) throws GuacamoleException {
 
-//        logger.info("Tunnel connection requested!");
-//        logger.info("Remote address: {}", request.getRemoteAddr());
-//
-//        try {
-//            GuacamoleConfiguration config = new GuacamoleConfiguration();
-//            config.setProtocol("ssh");
-//            config.setParameter("hostname", "192.168.230.128");
-//            config.setParameter("port", "22");
-//            config.setParameter("username", "ebon");
-//            config.setParameter("password", "123");
-//
-//            logger.info("Connecting to guacd at localhost:4822");
-//
-//            GuacamoleSocket socket = new ConfiguredGuacamoleSocket(
-//                    new InetGuacamoleSocket("localhost", 4822),
-//                    config
-//            );
-//
-//            logger.info("Connection successful!");
-//            return new SimpleGuacamoleTunnel(socket);
-//
-//        } catch (Exception e) {
-//            logger.error("Connection failed: ", e);
-//            throw new GuacamoleException("Failed to connect", e);
-//        }
-        return null;
+        logger.info("Tunnel connection requested!");
+        logger.info("Remote address: {}", request.getRemoteAddr());
+
+        try {
+            GuacamoleConfiguration config = new GuacamoleConfiguration();
+            config.setProtocol("ssh");
+            config.setParameter("hostname", "192.168.0.211");
+            config.setParameter("port", "22");
+            config.setParameter("username", "narin");
+            config.setParameter("password", "asdqwe");
+
+            logger.info("Connecting to guacd at localhost:4822");
+
+            GuacamoleSocket socket = new ConfiguredGuacamoleSocket(
+                    new InetGuacamoleSocket("localhost", 4822),
+                    config
+            );
+
+            logger.info("Connection successful!");
+            return new SimpleGuacamoleTunnel(socket);
+
+        } catch (Exception e) {
+            logger.error("Connection failed: ", e);
+            throw new GuacamoleException("Failed to connect", e);
+        }
     }
 
 }
