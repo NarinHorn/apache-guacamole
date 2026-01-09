@@ -8,9 +8,13 @@ import org.springframework.context.annotation.Configuration;
 public class GuacServletConfig {
 
     @Bean
-    public ServletRegistrationBean<GuacamoleController> guacTunnelServlet() {
+    public GuacamoleController guacamoleController() {
+        return new GuacamoleController();
+    }
+    @Bean
+    public ServletRegistrationBean<GuacamoleController> guacTunnelServlet(GuacamoleController guacamoleController) {
         return new ServletRegistrationBean<>(
-                new GuacamoleController(),
+                guacamoleController,  // <-- Use Spring-managed bean
                 "/tunnel",
                 "/tunnel/*"
         );
